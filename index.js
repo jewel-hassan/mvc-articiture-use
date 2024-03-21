@@ -65,22 +65,23 @@
 //   console.log(`server is running http://localhost:${PORT}`);
 // });
 
-
-
 // MVC ARTICITURE
 
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const bodyParser = require("body-parser");
 
-const userRouter = require("./routes/users")
+const userRouter = require("./routes/users");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(userRouter)
+app.use(cors());
+
+app.use(userRouter);
 app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
